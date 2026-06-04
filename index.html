@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yasal ve Gizlilik Sözleşmeleri - KindOf VideoSuite</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #fafafa;
+            --card-bg: #ffffff;
+            --text-primary: #171717;
+            --text-secondary: #4b5563;
+            --border-color: #e5e7eb;
+            --accent-color: #6366f1;
+            --accent-hover: #4f46e5;
+            --tab-bg: #f3f4f6;
+            --tab-active: #ffffff;
+            --max-width: 800px;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #0b0f19;
+                --card-bg: #111827;
+                --text-primary: #f3f4f6;
+                --text-secondary: #9ca3af;
+                --border-color: #1f2937;
+                --accent-color: #818cf8;
+                --accent-hover: #6366f1;
+                --tab-bg: #1f2937;
+                --tab-active: #111827;
+            }
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.7;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: var(--max-width);
+            width: 100%;
+        }
+
+        header {
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .logo-container {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .logo-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #818cf8 0%, #c084fc 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 24px;
+            box-shadow: 0 4px 14px rgba(129, 140, 248, 0.4);
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+            margin-bottom: 8px;
+            background: linear-gradient(to right, var(--text-primary), var(--text-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+
+        /* Tabs Styling */
+        .tabs-container {
+            display: flex;
+            background-color: var(--tab-bg);
+            padding: 6px;
+            border-radius: 16px;
+            margin-bottom: 24px;
+            gap: 4px;
+            border: 1px solid var(--border-color);
+        }
+
+        .tab-btn {
+            flex: 1;
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            padding: 12px 16px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: center;
+        }
+
+        .tab-btn:hover {
+            color: var(--text-primary);
+        }
+
+        .tab-btn.active {
+            background-color: var(--tab-active);
+            color: var(--accent-color);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+        }
+
+        /* Card Content Styling */
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05);
+            margin-bottom: 24px;
+        }
+
+        .tab-panel {
+            display: none;
+        }
+
+        section {
+            margin-bottom: 32px;
+        }
+
+        section:last-of-type {
+            margin-bottom: 0;
+        }
+
+        h2 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            font-size: 1.05rem;
+        }
+
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+            margin-bottom: 16px;
+        }
+
+        li {
+            position: relative;
+            padding-left: 24px;
+            margin-bottom: 12px;
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+        }
+
+        .privacy-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        .terms-list li::before {
+            content: "✦";
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        .highlight-box {
+            background-color: rgba(129, 140, 248, 0.08);
+            border-left: 4px solid var(--accent-color);
+            padding: 20px;
+            border-radius: 12px;
+            margin: 24px 0;
+        }
+
+        .highlight-box p {
+            margin-bottom: 0;
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin: 24px 0;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-color);
+            color: #ffffff;
+            box-shadow: 0 4px 14px rgba(129, 140, 248, 0.3);
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(129, 140, 248, 0.05);
+            border-color: var(--accent-color);
+        }
+
+        /* FAQ Styling */
+        .faq-item {
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            margin-bottom: 12px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            background-color: rgba(129, 140, 248, 0.02);
+            padding: 16px 20px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+            font-size: 1.05rem;
+            transition: background-color 0.2s;
+        }
+
+        .faq-question:hover {
+            background-color: rgba(129, 140, 248, 0.05);
+        }
+
+        .faq-answer {
+            padding: 16px 20px;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            font-size: 1rem;
+            background-color: var(--card-bg);
+            display: none;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(45deg);
+            color: var(--accent-color);
+        }
+
+        .faq-toggle {
+            font-size: 1.4rem;
+            transition: transform 0.2s;
+            color: var(--text-secondary);
+            font-weight: 300;
+            line-height: 1;
+        }
+
+        footer {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            border-top: 1px solid var(--border-color);
+            padding-top: 24px;
+        }
+
+        @media (max-width: 640px) {
+            body {
+                padding: 20px 16px;
+            }
+            .card {
+                padding: 24px;
+                border-radius: 16px;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+            .tabs-container {
+                flex-direction: column;
+                border-radius: 12px;
+            }
+            .tab-btn {
+                width: 100%;
+            }
+            .action-buttons {
+                flex-direction: column;
+            }
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo-container">
+                <div class="logo-icon">K</div>
+            </div>
+            <h1>KindOf VideoSuite</h1>
+            <p id="page-subtitle" class="subtitle">Yasal Bilgilendirme ve Destek</p>
+        </header>
+
+        <!-- Navigation Tabs -->
+        <div class="tabs-container">
+            <button id="privacy-btn" class="tab-btn" onclick="showTab('privacy')">Gizlilik Politikası</button>
+            <button id="terms-btn" class="tab-btn" onclick="showTab('terms')">Kullanım Koşulları</button>
+            <button id="support-btn" class="tab-btn" onclick="showTab('support')">Destek ve SSS</button>
+        </div>
+
+        <main class="card">
+            <!-- Privacy Policy Tab -->
+            <div id="privacy-panel" class="tab-panel">
+                <section>
+                    <h2>1. Giriş ve Taahhüt</h2>
+                    <p><strong>KindOf VideoSuite</strong> ("Uygulama") olarak gizliliğinize son derece önem veriyoruz. Bu gizlilik politikası, uygulamamızı kullanırken hangi verilerin nasıl işlendiğini (veya işlenmediğini) açıklamak amacıyla hazırlanmıştır. Uygulamamızı kullanarak bu politikada belirtilen esasları kabul etmiş sayılarsınız.</p>
+                </section>
+
+                <section>
+                    <h2>2. Veri Toplama ve İşleme</h2>
+                    <div class="highlight-box">
+                        <p>KindOf VideoSuite, tamamen çevrimdışı (offline) çalışan bir masaüstü uygulamasıdır. Video işleme, stabilizasyon ve düzenleme işlemlerinin tamamı doğrudan kendi bilgisayarınızda (lokal olarak) gerçekleştirilir.</p>
+                    </div>
+                    <p>Bu bağlamda uygulamamız:</p>
+                    <ul class="privacy-list">
+                        <li>Hiçbir kişisel bilginizi (isim, e-posta, konum vb.) istemez veya toplamaz.</li>
+                        <li>İşlediğiniz video dosyalarını, ses dosyalarını veya diğer medya içeriklerini hiçbir uzak sunucuya yüklemez, aktarmaz ve paylaşmaz.</li>
+                        <li>Uygulama içinde yaptığınız ayarlar ve tercihler yalnızca yerel cihazınızda saklanır.</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>3. Üçüncü Taraf Araçlar ve Kütüphaneler</h2>
+                    <p>Uygulamamız, video işleme süreçlerinde <strong>ffmpeg</strong>, <strong>gyroflow</strong> gibi açık kaynaklı ve güvenilir alt kütüphaneleri kullanmaktadır. Bu araçlar da tamamen yerel olarak çalışmakta olup, internet üzerinden herhangi bir veri aktarımı gerçekleştirmemektedir.</p>
+                </section>
+
+                <section>
+                    <h2>4. Bilgi Güvenliği</h2>
+                    <p>Uygulama verilerinizi uzak bir sunucuda tutmadığı için, verilerinizin güvenliği tamamen sizin kendi cihazınızın güvenliğine bağlıdır. Bilgisayarınızda yetkisiz erişimi engellemek için gerekli güvenlik önlemlerini almanızı öneririz.</p>
+                </section>
+
+                <section>
+                    <h2>5. Değişiklikler</h2>
+                    <p>Bu gizlilik politikası, uygulamaya yeni özellikler eklendikçe veya yasal gereksinimler değiştikçe güncellenebilir. Güncellemeleri bu sayfa üzerinden takip edebilirsiniz.</p>
+                </section>
+
+                <section>
+                    <h2>6. İletişim</h2>
+                    <p>Gizlilik politikamız veya uygulamamız hakkında sorularınız varsa, bizimle doğrudan iletişime geçebilirsiniz.</p>
+                    <p>E-posta: <a href="mailto:sevketakcahasan@gmail.com" style="color: var(--accent-color); text-decoration: none; font-weight: 500;">sevketakcahasan@gmail.com</a></p>
+                </section>
+            </div>
+
+            <!-- Terms of Use Tab -->
+            <div id="terms-panel" class="tab-panel">
+                <section>
+                    <h2>1. Koşulların Kabulü</h2>
+                    <p><strong>KindOf VideoSuite</strong> uygulamasını indirerek, kurarak veya kullanarak, bu Kullanım Koşulları'na bağlı kalmayı kabul etmiş olursunuz. Eğer bu koşullardan herhangi birini kabul etmiyorsanız, uygulamayı kullanmamanız gerekir.</p>
+                </section>
+
+                <section>
+                    <h2>2. Lisans ve Kullanım Hakları</h2>
+                    <p>Uygulama, size ticari olmayan veya ticari video düzenleme ve işleme faaliyetleriniz için kişisel, devredilemez ve münhasır olmayan bir kullanım lisansı sunar. Uygulamanın kaynak kodlarını kopyalamanız, değiştirmeniz, tersine mühendislik işlemlerine tabi tutmanız veya dağıtmanız yasaktır.</p>
+                </section>
+
+                <section>
+                    <h2>3. Kullanıcı Sorumlulukları ve Yerel İşleme</h2>
+                    <p>KindOf VideoSuite, video dosyalarını tamamen yerel cihazınızda işleyen bir yardımcı araçtır. Bu doğrultuda:</p>
+                    <ul class="terms-list">
+                        <li>Uygulamaya aktardığınız ve işlediğiniz tüm video, ses ve veri içeriklerinin yasal sorumluluğu tamamen size aittir.</li>
+                        <li>Uygulamayı yürürlükteki yasalara aykırı veya üçüncü şahısların telif haklarını ihlal edecek şekilde kullanmamayı taahhüt edersiniz.</li>
+                        <li>Uygulamanın çalışması için gerekli donanım gereksinimlerini (işlemci gücü, GPU, boş disk alanı vb.) sağlamak kullanıcının sorumluluğundadır.</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>4. Sorumluluk Sınırlandırması</h2>
+                    <p>KindOf VideoSuite, "Olduğu Gibi" (As-Is) esasıyla sunulmaktadır. Yazılımın kesintisiz, hatasız veya mükemmel çalışacağını garanti etmiyoruz. Uygulamanın kullanımından veya kullanılamamasından kaynaklanan doğrudan, dolaylı veya tesadüfi zararlardan (veri kaybı, donanım arızası vb.) geliştirici sorumlu tutulamaz.</p>
+                </section>
+
+                <section>
+                    <h2>5. Üçüncü Taraf Yazılımlar</h2>
+                    <p>Uygulama, ffmpeg ve gyroflow gibi harici kütüphaneleri ve sidecar modüllerini barındırabilir. Bu üçüncü taraf bileşenlerin kullanımı, kendi ilgili açık kaynak lisans sözleşmelerine tabidir.</p>
+                </section>
+
+                <section>
+                    <h2>6. Koşullarda Değişiklik</h2>
+                    <p>Uygulama geliştiricisi, bu Kullanım Koşulları'nı dilediği zaman güncelleme hakkını saklı tutar. Güncellemeler bu sayfada yayınlandığı andan itibaren geçerlilik kazanır.</p>
+                </section>
+
+                <section>
+                    <h2>7. İletişim</h2>
+                    <p>Kullanım koşullarıyla ilgili her türlü soru veya geri bildiriminiz için bizimle iletişime geçebilirsiniz:</p>
+                    <p>E-posta: <a href="mailto:sevketakcahasan@gmail.com" style="color: var(--accent-color); text-decoration: none; font-weight: 500;">sevketakcahasan@gmail.com</a></p>
+                </section>
+            </div>
+
+            <!-- Support & FAQ Tab -->
+            <div id="support-panel" class="tab-panel">
+                <section>
+                    <h2>Nasıl Yardımcı Olabiliriz?</h2>
+                    <p>KindOf VideoSuite uygulamasını kullanırken karşılaştığınız sorunlar, geri bildirimleriniz veya yeni özellik istekleriniz için bizimle iletişime geçmekten çekinmeyin.</p>
+                    <p>Uygulama tamamen yerel cihazınızda çalıştığından, yaşadığınız sorunların büyük bir kısmı bilgisayarınızın donanım yapılandırması veya kütüphane izinleriyle ilgili olabilir. Aşağıdaki Sıkça Sorulan Sorular (SSS) bölümünde hızlı çözümlere ulaşabilirsiniz.</p>
+                    
+                    <div class="action-buttons">
+                        <a href="mailto:sevketakcahasan@gmail.com" class="btn btn-primary">E-posta ile İletişime Geç</a>
+                        <a href="https://github.com/sevketakcahasan" target="_blank" class="btn btn-secondary">GitHub Profilini Ziyaret Et</a>
+                    </div>
+                </section>
+
+                <section style="margin-top: 40px;">
+                    <h2>Sıkça Sorulan Sorular (SSS)</h2>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFaq(this)">
+                            <span>Uygulama videoları işlerken neden yavaş veya donuyor?</span>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            Video stabilizasyonu, dönüştürme ve kodlama işlemleri yüksek işlemci (CPU) ve grafik kartı (GPU) gücü gerektirir. İşlem sırasında arka planda çalışan diğer yüksek kaynak tüketen uygulamaları kapatarak performansı önemli ölçüde artırabilirsiniz. Ayrıca bilgisayarınızın şarja takılı ve yüksek performans modunda olduğundan emin olun.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFaq(this)">
+                            <span>Video çıktıları nereye kaydediliyor?</span>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            Dışa aktardığınız tüm videolar, kaydetme/render ekranında seçtiğiniz hedef klasöre yerel olarak kaydedilir. Dosyalarınız hiçbir bulut sunucusuna gönderilmez veya saklanmaz. Çıktı dosyasını bulamıyorsanız, kaydetme esnasında seçtiğiniz klasör yolunu kontrol edin.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFaq(this)">
+                            <span>Video stabilizasyonu (gyro) veya render hatası alıyorum?</span>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            Video dosyanızın uygulamanın desteklediği standart formatlarda (örneğin MP4, MOV) olduğundan emin olun. Stabilizasyon için gerekli olan gyro verilerinin kameranız tarafından kaydedildiğinden ve video dosyasının içinde gömülü veya harici olarak mevcut olduğundan emin olun.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFaq(this)">
+                            <span>macOS üzerinde "Geliştirici doğrulanamadı" uyarısı alırsam ne yapmalıyım?</span>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            KindOf VideoSuite uygulamasını doğrudan App Store üzerinden indirdiyseniz bu uyarıyı almazsınız. Ancak bağımsız kurulumlarda Apple Gatekeeper koruması tetiklenebilir. Bu durumda <strong>Sistem Ayarları > Gizlilik ve Güvenlik</strong> menüsüne giderek alt kısımda yer alan "Yine de Aç" butonuna tıklayarak uygulamaya izin verebilirsiniz.
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <footer>
+            <p>Son Güncelleme: 4 Haziran 2026</p>
+        </footer>
+    </div>
+
+    <script>
+        function toggleFaq(element) {
+            const item = element.parentElement;
+            item.classList.toggle('active');
+            
+            const toggle = element.querySelector('.faq-toggle');
+            if (item.classList.contains('active')) {
+                toggle.textContent = '✕';
+            } else {
+                toggle.textContent = '+';
+            }
+        }
+
+        function showTab(tabId) {
+            // Hide all tab panels
+            document.querySelectorAll('.tab-panel').forEach(panel => {
+                panel.style.display = 'none';
+            });
+            // Remove active classes from buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Show selected panel
+            const panel = document.getElementById(tabId + '-panel');
+            if (panel) {
+                panel.style.display = 'block';
+            }
+            
+            // Activate selected button
+            const btn = document.getElementById(tabId + '-btn');
+            if (btn) {
+                btn.classList.add('active');
+            }
+
+            // Update page subtitle
+            const subtitleEl = document.getElementById('page-subtitle');
+            if (subtitleEl) {
+                if (tabId === 'privacy') {
+                    subtitleEl.textContent = 'Gizlilik Politikası';
+                } else if (tabId === 'terms') {
+                    subtitleEl.textContent = 'Kullanım Koşulları (EULA)';
+                } else if (tabId === 'support') {
+                    subtitleEl.textContent = 'Destek ve Sıkça Sorulan Sorular';
+                }
+            }
+
+            // Update browser URL hash quietly
+            if (history.replaceState) {
+                history.replaceState(null, null, '#' + tabId);
+            }
+        }
+
+        // Initialize based on URL hash
+        window.addEventListener('DOMContentLoaded', () => {
+            const hash = window.location.hash.substring(1);
+            if (['privacy', 'terms', 'support'].includes(hash)) {
+                showTab(hash);
+            } else {
+                showTab('privacy'); // default
+            }
+        });
+
+        // Also listen to hashchange to support navigation within the page
+        window.addEventListener('hashchange', () => {
+            const hash = window.location.hash.substring(1);
+            if (['privacy', 'terms', 'support'].includes(hash)) {
+                showTab(hash);
+            }
+        });
+    </script>
+</body>
+</html>

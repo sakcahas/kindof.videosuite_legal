@@ -59,7 +59,7 @@
         }
 
         header {
-            margin-bottom: 24px;
+            margin-bottom: 16px;
             text-align: center;
         }
 
@@ -97,6 +97,38 @@
         .subtitle {
             color: var(--text-secondary);
             font-size: 1rem;
+        }
+
+        /* Language Switcher Styling */
+        .lang-switcher {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 24px;
+            gap: 6px;
+        }
+
+        .lang-btn {
+            background-color: var(--tab-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .lang-btn:hover {
+            color: var(--text-primary);
+            border-color: var(--accent-color);
+        }
+
+        .lang-btn.active {
+            background-color: var(--accent-color);
+            color: #ffffff;
+            border-color: var(--accent-color);
+            box-shadow: 0 4px 10px rgba(99, 102, 241, 0.2);
         }
 
         /* Tabs Styling */
@@ -350,161 +382,169 @@
 </head>
 <body>
     <div class="container">
+        <!-- Language Switcher -->
+        <div class="lang-switcher">
+            <button id="lang-en" class="lang-btn" onclick="changeLang('en')">English</button>
+            <button id="lang-tr" class="lang-btn" onclick="changeLang('tr')">Türkçe</button>
+            <button id="lang-fr" class="lang-btn" onclick="changeLang('fr')">Français</button>
+            <button id="lang-it" class="lang-btn" onclick="changeLang('it')">Italiano</button>
+        </div>
+
         <header>
             <div class="logo-container">
                 <div class="logo-icon">K</div>
             </div>
             <h1>KindOf VideoSuite</h1>
-            <p id="page-subtitle" class="subtitle">Yasal Bilgilendirme ve Destek</p>
+            <p id="page-subtitle" class="subtitle" data-i18n="subtitleDefault">Yasal Bilgilendirme ve Destek</p>
         </header>
 
         <!-- Navigation Tabs -->
         <div class="tabs-container">
-            <button id="privacy-btn" class="tab-btn" onclick="showTab('privacy')">Gizlilik Politikası</button>
-            <button id="terms-btn" class="tab-btn" onclick="showTab('terms')">Kullanım Koşulları</button>
-            <button id="support-btn" class="tab-btn" onclick="showTab('support')">Destek ve SSS</button>
+            <button id="privacy-btn" class="tab-btn" onclick="showTab('privacy')" data-i18n="tabPrivacy">Gizlilik Politikası</button>
+            <button id="terms-btn" class="tab-btn" onclick="showTab('terms')" data-i18n="tabTerms">Kullanım Koşulları</button>
+            <button id="support-btn" class="tab-btn" onclick="showTab('support')" data-i18n="tabSupport">Destek ve SSS</button>
         </div>
 
         <main class="card">
             <!-- Privacy Policy Tab -->
             <div id="privacy-panel" class="tab-panel">
                 <section>
-                    <h2>1. Giriş ve Taahhüt</h2>
-                    <p><strong>KindOf VideoSuite</strong> ("Uygulama") olarak gizliliğinize son derece önem veriyoruz. Bu gizlilik politikası, uygulamamızı kullanırken hangi verilerin nasıl işlendiğini (veya işlenmediğini) açıklamak amacıyla hazırlanmıştır. Uygulamamızı kullanarak bu politikada belirtilen esasları kabul etmiş sayılarsınız.</p>
+                    <h2 data-i18n="privSec1Title">1. Giriş ve Taahhüt</h2>
+                    <p data-i18n="privSec1Text">KindOf VideoSuite ("Uygulama") olarak gizliliğinize son derece önem veriyoruz. Bu gizlilik politikası, uygulamamızı kullanırken hangi verilerin nasıl işlendiğini (veya işlenmediğini) açıklamak amacıyla hazırlanmıştır. Uygulamamızı kullanarak bu politikada belirtilen esasları kabul etmiş sayılarsınız.</p>
                 </section>
 
                 <section>
-                    <h2>2. Veri Toplama ve İşleme</h2>
+                    <h2 data-i18n="privSec2Title">2. Veri Toplama ve İşleme</h2>
                     <div class="highlight-box">
-                        <p>KindOf VideoSuite, tamamen çevrimdışı (offline) çalışan bir masaüstü uygulamasıdır. Video işleme, stabilizasyon ve düzenleme işlemlerinin tamamı doğrudan kendi bilgisayarınızda (lokal olarak) gerçekleştirilir.</p>
+                        <p data-i18n="privSec2Highlight">KindOf VideoSuite, tamamen çevrimdışı (offline) çalışan bir masaüstü uygulamasıdır. Video işleme, stabilizasyon ve düzenleme işlemlerinin tamamı doğrudan kendi bilgisayarınızda (lokal olarak) gerçekleştirilir.</p>
                     </div>
-                    <p>Bu bağlamda uygulamamız:</p>
+                    <p data-i18n="privSec2Intro">Bu bağlamda uygulamamız:</p>
                     <ul class="privacy-list">
-                        <li>Hiçbir kişisel bilginizi (isim, e-posta, konum vb.) istemez veya toplamaz.</li>
-                        <li>İşlediğiniz video dosyalarını, ses dosyalarını veya diğer medya içeriklerini hiçbir uzak sunucuya yüklemez, aktarmaz ve paylaşmaz.</li>
-                        <li>Uygulama içinde yaptığınız ayarlar ve tercihler yalnızca yerel cihazınızda saklanır.</li>
+                        <li data-i18n="privSec2Bullet1">Hiçbir kişisel bilginizi (isim, e-posta, konum vb.) istemez veya toplamaz.</li>
+                        <li data-i18n="privSec2Bullet2">İşlediğiniz video dosyalarını, ses dosyalarını veya diğer medya içeriklerini hiçbir uzak sunucuya yüklemez, aktarmaz ve paylaşmaz.</li>
+                        <li data-i18n="privSec2Bullet3">Uygulama içinde yaptığınız ayarlar ve tercihler yalnızca yerel cihazınızda saklanır.</li>
                     </ul>
                 </section>
 
                 <section>
-                    <h2>3. Üçüncü Taraf Araçlar ve Kütüphaneler</h2>
-                    <p>Uygulamamız, video işleme süreçlerinde <strong>ffmpeg</strong>, <strong>gyroflow</strong> gibi açık kaynaklı ve güvenilir alt kütüphaneleri kullanmaktadır. Bu araçlar da tamamen yerel olarak çalışmakta olup, internet üzerinden herhangi bir veri aktarımı gerçekleştirmemektedir.</p>
+                    <h2 data-i18n="privSec3Title">3. Üçüncü Taraf Araçlar ve Kütüphaneler</h2>
+                    <p data-i18n="privSec3Text">Uygulamamız, video işleme süreçlerinde ffmpeg, gyroflow gibi açık kaynaklı ve güvenilir alt kütüphaneleri kullanmaktadır. Bu araçlar da tamamen yerel olarak çalışmakta olup, internet üzerinden herhangi bir veri aktarımı gerçekleştirmemektedir.</p>
                 </section>
 
                 <section>
-                    <h2>4. Bilgi Güvenliği</h2>
-                    <p>Uygulama verilerinizi uzak bir sunucuda tutmadığı için, verilerinizin güvenliği tamamen sizin kendi cihazınızın güvenliğine bağlıdır. Bilgisayarınızda yetkisiz erişimi engellemek için gerekli güvenlik önlemlerini almanızı öneririz.</p>
+                    <h2 data-i18n="privSec4Title">4. Bilgi Güvenliği</h2>
+                    <p data-i18n="privSec4Text">Uygulama verilerinizi uzak bir sunucuda tutmadığı için, verilerinizin güvenliği tamamen sizin kendi cihazınızın güvenliğine bağlıdır. Bilgisayarınızda yetkisiz erişimi engellemek için gerekli güvenlik önlemlerini almanızı öneririz.</p>
                 </section>
 
                 <section>
-                    <h2>5. Değişiklikler</h2>
-                    <p>Bu gizlilik politikası, uygulamaya yeni özellikler eklendikçe veya yasal gereksinimler değiştikçe güncellenebilir. Güncellemeleri bu sayfa üzerinden takip edebilirsiniz.</p>
+                    <h2 data-i18n="privSec5Title">5. Değişiklikler</h2>
+                    <p data-i18n="privSec5Text">Bu gizlilik politikası, uygulamaya yeni özellikler eklendikçe veya yasal gereksinimler değiştikçe güncellenebilir. Güncellemeleri bu sayfa üzerinden takip edebilirsiniz.</p>
                 </section>
 
                 <section>
-                    <h2>6. İletişim</h2>
-                    <p>Gizlilik politikamız veya uygulamamız hakkında sorularınız varsa, bizimle doğrudan iletişime geçebilirsiniz.</p>
-                    <p>E-posta: <a href="mailto:sevketakcahasan@gmail.com" style="color: var(--accent-color); text-decoration: none; font-weight: 500;">sevketakcahasan@gmail.com</a></p>
+                    <h2 data-i18n="privSec6Title">6. İletişim</h2>
+                    <p data-i18n="privSec6Text">Gizlilik politikamız veya uygulamamız hakkında sorularınız varsa, bizimle doğrudan iletişime geçebilirsiniz.</p>
+                    <p><span data-i18n="emailLabel">E-posta</span>: <a href="mailto:sevketakcahasan@gmail.com" style="color: var(--accent-color); text-decoration: none; font-weight: 500;">sevketakcahasan@gmail.com</a></p>
                 </section>
             </div>
 
             <!-- Terms of Use Tab -->
             <div id="terms-panel" class="tab-panel">
                 <section>
-                    <h2>1. Koşulların Kabulü</h2>
-                    <p><strong>KindOf VideoSuite</strong> uygulamasını indirerek, kurarak veya kullanarak, bu Kullanım Koşulları'na bağlı kalmayı kabul etmiş olursunuz. Eğer bu koşullardan herhangi birini kabul etmiyorsanız, uygulamayı kullanmamanız gerekir.</p>
+                    <h2 data-i18n="termsSec1Title">1. Koşulların Kabulü</h2>
+                    <p data-i18n="termsSec1Text">KindOf VideoSuite uygulamasını indirerek, kurarak veya kullanarak, bu Kullanım Koşulları'na bağlı kalmayı kabul etmiş olursunuz. Eğer bu koşullardan herhangi birini kabul etmiyorsanız, uygulamayı kullanmamanız gerekir.</p>
                 </section>
 
                 <section>
-                    <h2>2. Lisans ve Kullanım Hakları</h2>
-                    <p>Uygulama, size ticari olmayan veya ticari video düzenleme ve işleme faaliyetleriniz için kişisel, devredilemez ve münhasır olmayan bir kullanım lisansı sunar. Uygulamanın kaynak kodlarını kopyalamanız, değiştirmeniz, tersine mühendislik işlemlerine tabi tutmanız veya dağıtmanız yasaktır.</p>
+                    <h2 data-i18n="termsSec2Title">2. Lisans ve Kullanım Hakları</h2>
+                    <p data-i18n="termsSec2Text">Uygulama, size ticari olmayan veya ticari video düzenleme ve işleme faaliyetleriniz için kişisel, devredilemez ve münhasır olmayan bir kullanım lisansı sunar. Uygulamanın kaynak kodlarını kopyalamanız, değiştirmeniz, tersine mühendislik işlemlerine tabi tutmanız veya dağıtmanız yasaktır.</p>
                 </section>
 
                 <section>
-                    <h2>3. Kullanıcı Sorumlulukları ve Yerel İşleme</h2>
-                    <p>KindOf VideoSuite, video dosyalarını tamamen yerel cihazınızda işleyen bir yardımcı araçtır. Bu doğrultuda:</p>
+                    <h2 data-i18n="termsSec3Title">3. Kullanıcı Sorumlulukları ve Yerel İşleme</h2>
+                    <p data-i18n="termsSec3Text">KindOf VideoSuite, video dosyalarını tamamen yerel cihazınızda işleyen bir yardımcı araçtır. Bu doğrultuda:</p>
                     <ul class="terms-list">
-                        <li>Uygulamaya aktardığınız ve işlediğiniz tüm video, ses ve veri içeriklerinin yasal sorumluluğu tamamen size aittir.</li>
-                        <li>Uygulamayı yürürlükteki yasalara aykırı veya üçüncü şahısların telif haklarını ihlal edecek şekilde kullanmamayı taahhüt edersiniz.</li>
-                        <li>Uygulamanın çalışması için gerekli donanım gereksinimlerini (işlemci gücü, GPU, boş disk alanı vb.) sağlamak kullanıcının sorumluluğundadır.</li>
+                        <li data-i18n="termsSec3Bullet1">Uygulamaya aktardığınız ve işlediğiniz tüm video, ses ve veri içeriklerinin yasal sorumluluğu tamamen size aittir.</li>
+                        <li data-i18n="termsSec3Bullet2">Uygulamayı yürürlükteki yasalara aykırı veya üçüncü şahısların telif haklarını ihlal edecek şekilde kullanmamayı taahhüt edersiniz.</li>
+                        <li data-i18n="termsSec3Bullet3">Uygulamanın çalışması için gerekli donanım gereksinimlerini (işlemci gücü, GPU, boş disk alanı vb.) sağlamak kullanıcının sorumluluğundadır.</li>
                     </ul>
                 </section>
 
                 <section>
-                    <h2>4. Sorumluluk Sınırlandırması</h2>
-                    <p>KindOf VideoSuite, "Olduğu Gibi" (As-Is) esasıyla sunulmaktadır. Yazılımın kesintisiz, hatasız veya mükemmel çalışacağını garanti etmiyoruz. Uygulamanın kullanımından veya kullanılamamasından kaynaklanan doğrudan, dolaylı veya tesadüfi zararlardan (veri kaybı, donanım arızası vb.) geliştirici sorumlu tutulamaz.</p>
+                    <h2 data-i18n="termsSec4Title">4. Sorumluluk Sınırlandırması</h2>
+                    <p data-i18n="termsSec4Text">KindOf VideoSuite, "Olduğu Gibi" (As-Is) esasıyla sunulmaktadır. Yazılımın kesintisiz, hatasız veya mükemmel çalışacağını garanti etmiyoruz. Uygulamanın kullanımından veya kullanılamamasından kaynaklanan doğrudan, dolaylı veya tesadüfi zararlardan (veri kaybı, donanım arızası vb.) geliştirici sorumlu tutulamaz.</p>
                 </section>
 
                 <section>
-                    <h2>5. Üçüncü Taraf Yazılımlar</h2>
-                    <p>Uygulama, ffmpeg ve gyroflow gibi harici kütüphaneleri ve sidecar modüllerini barındırabilir. Bu üçüncü taraf bileşenlerin kullanımı, kendi ilgili açık kaynak lisans sözleşmelerine tabidir.</p>
+                    <h2 data-i18n="termsSec5Title">5. Üçüncü Taraf Yazılımlar</h2>
+                    <p data-i18n="termsSec5Text">Uygulama, ffmpeg ve gyroflow gibi harici kütüphaneleri ve sidecar modüllerini barındırabilir. Bu üçüncü taraf bileşenlerin kullanımı, kendi ilgili açık kaynak lisans sözleşmelerine tabidir.</p>
                 </section>
 
                 <section>
-                    <h2>6. Koşullarda Değişiklik</h2>
-                    <p>Uygulama geliştiricisi, bu Kullanım Koşulları'nı dilediği zaman güncelleme hakkını saklı tutar. Güncellemeler bu sayfada yayınlandığı andan itibaren geçerlilik kazanır.</p>
+                    <h2 data-i18n="termsSec6Title">6. Koşullarda Değişiklik</h2>
+                    <p data-i18n="termsSec6Text">Uygulama geliştiricisi, bu Kullanım Koşulları'nı dilediği zaman güncelleme hakkını saklı tutar. Güncellemeler bu sayfada yayınlandığı andan itibaren geçerlilik kazanır.</p>
                 </section>
 
                 <section>
-                    <h2>7. İletişim</h2>
-                    <p>Kullanım koşullarıyla ilgili her türlü soru veya geri bildiriminiz için bizimle iletişime geçebilirsiniz:</p>
-                    <p>E-posta: <a href="mailto:sevketakcahasan@gmail.com" style="color: var(--accent-color); text-decoration: none; font-weight: 500;">sevketakcahasan@gmail.com</a></p>
+                    <h2 data-i18n="termsSec7Title">7. İletişim</h2>
+                    <p data-i18n="termsSec7Text">Kullanım koşullarıyla ilgili her türlü soru veya geri bildiriminiz için bizimle iletişime geçebilirsiniz:</p>
+                    <p><span data-i18n="emailLabel">E-posta</span>: <a href="mailto:sevketakcahasan@gmail.com" style="color: var(--accent-color); text-decoration: none; font-weight: 500;">sevketakcahasan@gmail.com</a></p>
                 </section>
             </div>
 
             <!-- Support & FAQ Tab -->
             <div id="support-panel" class="tab-panel">
                 <section>
-                    <h2>Nasıl Yardımcı Olabiliriz?</h2>
-                    <p>KindOf VideoSuite uygulamasını kullanırken karşılaştığınız sorunlar, geri bildirimleriniz veya yeni özellik istekleriniz için bizimle iletişime geçmekten çekinmeyin.</p>
-                    <p>Uygulama tamamen yerel cihazınızda çalıştığından, yaşadığınız sorunların büyük bir kısmı bilgisayarınızın donanım yapılandırması veya kütüphane izinleriyle ilgili olabilir. Aşağıdaki Sıkça Sorulan Sorular (SSS) bölümünde hızlı çözümlere ulaşabilirsiniz.</p>
+                    <h2 data-i18n="suppTitle">Nasıl Yardımcı Olabiliriz?</h2>
+                    <p data-i18n="suppText">KindOf VideoSuite uygulamasını kullanırken karşılaştığınız sorunlar, geri bildirimleriniz veya yeni özellik istekleriniz için bizimle iletişime geçmekten çekinmeyin.</p>
+                    <p data-i18n="suppLocalInfo">Uygulama tamamen yerel cihazınızda çalıştığından, yaşadığınız sorunların büyük bir kısmı bilgisayarınızın donanım yapılandırması veya kütüphane izinleriyle ilgili olabilir. Aşağıdaki Sıkça Sorulan Sorular (SSS) bölümünde hızlı çözümlere ulaşabilirsiniz.</p>
                     
                     <div class="action-buttons">
-                        <a href="mailto:sevketakcahasan@gmail.com" class="btn btn-primary">E-posta ile İletişime Geç</a>
-                        <a href="https://github.com/sevketakcahasan" target="_blank" class="btn btn-secondary">GitHub Profilini Ziyaret Et</a>
+                        <a href="mailto:sevketakcahasan@gmail.com" class="btn btn-primary" data-i18n="btnEmail">E-posta ile İletişime Geç</a>
+                        <a href="https://github.com/sevketakcahasan" target="_blank" class="btn btn-secondary" data-i18n="btnGithub">GitHub Profilini Ziyaret Et</a>
                     </div>
                 </section>
 
                 <section style="margin-top: 40px;">
-                    <h2>Sıkça Sorulan Sorular (SSS)</h2>
+                    <h2 data-i18n="faqTitle">Sıkça Sorulan Sorular (SSS)</h2>
                     
                     <div class="faq-item">
                         <div class="faq-question" onclick="toggleFaq(this)">
-                            <span>Uygulama videoları işlerken neden yavaş veya donuyor?</span>
+                            <span data-i18n="faqQ1">Uygulama videoları işlerken neden yavaş veya donuyor?</span>
                             <span class="faq-toggle">+</span>
                         </div>
-                        <div class="faq-answer">
+                        <div class="faq-answer" data-i18n="faqA1">
                             Video stabilizasyonu, dönüştürme ve kodlama işlemleri yüksek işlemci (CPU) ve grafik kartı (GPU) gücü gerektirir. İşlem sırasında arka planda çalışan diğer yüksek kaynak tüketen uygulamaları kapatarak performansı önemli ölçüde artırabilirsiniz. Ayrıca bilgisayarınızın şarja takılı ve yüksek performans modunda olduğundan emin olun.
                         </div>
                     </div>
 
                     <div class="faq-item">
                         <div class="faq-question" onclick="toggleFaq(this)">
-                            <span>Video çıktıları nereye kaydediliyor?</span>
+                            <span data-i18n="faqQ2">Video çıktıları nereye kaydediliyor?</span>
                             <span class="faq-toggle">+</span>
                         </div>
-                        <div class="faq-answer">
+                        <div class="faq-answer" data-i18n="faqA2">
                             Dışa aktardığınız tüm videolar, kaydetme/render ekranında seçtiğiniz hedef klasöre yerel olarak kaydedilir. Dosyalarınız hiçbir bulut sunucusuna gönderilmez veya saklanmaz. Çıktı dosyasını bulamıyorsanız, kaydetme esnasında seçtiğiniz klasör yolunu kontrol edin.
                         </div>
                     </div>
 
                     <div class="faq-item">
                         <div class="faq-question" onclick="toggleFaq(this)">
-                            <span>Video stabilizasyonu (gyro) veya render hatası alıyorum?</span>
+                            <span data-i18n="faqQ3">Video stabilizasyonu (gyro) veya render hatası alıyorum?</span>
                             <span class="faq-toggle">+</span>
                         </div>
-                        <div class="faq-answer">
+                        <div class="faq-answer" data-i18n="faqA3">
                             Video dosyanızın uygulamanın desteklediği standart formatlarda (örneğin MP4, MOV) olduğundan emin olun. Stabilizasyon için gerekli olan gyro verilerinin kameranız tarafından kaydedildiğinden ve video dosyasının içinde gömülü veya harici olarak mevcut olduğundan emin olun.
                         </div>
                     </div>
 
                     <div class="faq-item">
                         <div class="faq-question" onclick="toggleFaq(this)">
-                            <span>macOS üzerinde "Geliştirici doğrulanamadı" uyarısı alırsam ne yapmalıyım?</span>
+                            <span data-i18n="faqQ4">macOS üzerinde "Geliştirici doğrulanamadı" uyarısı alırsam ne yapmalıyım?</span>
                             <span class="faq-toggle">+</span>
                         </div>
-                        <div class="faq-answer">
-                            KindOf VideoSuite uygulamasını doğrudan App Store üzerinden indirdiyseniz bu uyarıyı almazsınız. Ancak bağımsız kurulumlarda Apple Gatekeeper koruması tetiklenebilir. Bu durumda <strong>Sistem Ayarları > Gizlilik ve Güvenlik</strong> menüsüne giderek alt kısımda yer alan "Yine de Aç" butonuna tıklayarak uygulamaya izin verebilirsiniz.
+                        <div class="faq-answer" data-i18n="faqA4">
+                            KindOf VideoSuite uygulamasını doğrudan App Store üzerinden indirdiyseniz bu uyarıyı almazsınız. Ancak bağımsız kurulumlarda Apple Gatekeeper koruması tetiklenebilir. Bu durumda Sistem Ayarları > Gizlilik ve Güvenlik menüsüne giderek alt kısımda yer alan "Yine de Aç" butonuna tıklayarak uygulamaya izin verebilirsiniz.
                         </div>
                     </div>
                 </section>
@@ -512,11 +552,250 @@
         </main>
 
         <footer>
-            <p>Son Güncelleme: 4 Haziran 2026</p>
+            <p id="footer-text">Son Güncelleme: 4 Haziran 2026</p>
         </footer>
     </div>
 
     <script>
+        const TRANSLATIONS = {
+            en: {
+                pageTitle: "Legal Agreements & Support - KindOf VideoSuite",
+                subtitleDefault: "Legal Agreements, EULA & Support",
+                tabPrivacy: "Privacy Policy",
+                tabTerms: "Terms of Use",
+                tabSupport: "Support & FAQ",
+                emailLabel: "Email",
+                lastUpdate: "Last Updated: June 4, 2026",
+                // Privacy Panel
+                privSec1Title: "1. Introduction & Commitment",
+                privSec1Text: "At KindOf VideoSuite (\"the Application\"), we value your privacy. This privacy policy explains how your data is processed (or not processed) when using our application. By using our application, you accept the terms outlined in this policy.",
+                privSec2Title: "2. Data Collection & Processing",
+                privSec2Highlight: "KindOf VideoSuite is a fully offline desktop application. All video processing, stabilization, and editing operations are performed directly on your own computer (locally).",
+                privSec2Intro: "In this context, our application:",
+                privSec2Bullet1: "Does not request or collect any personal information (name, email, location, etc.).",
+                privSec2Bullet2: "Does not upload, transmit, or share your processed video files, audio files, or other media contents with any remote servers.",
+                privSec2Bullet3: "Stores all your settings and preferences locally on your device.",
+                privSec3Title: "3. Third-Party Tools & Libraries",
+                privSec3Text: "Our application uses trusted, open-source libraries like ffmpeg and gyroflow for video processing. These tools run entirely locally and do not transmit data over the internet.",
+                privSec4Title: "4. Information Security",
+                privSec4Text: "Since the application does not store your data on a remote server, security depends entirely on the security of your own device. We recommend taking necessary precautions to prevent unauthorized access to your computer.",
+                privSec5Title: "5. Changes",
+                privSec5Text: "This privacy policy may be updated as new features are added or legal requirements change. You can follow updates on this page.",
+                privSec6Title: "6. Contact",
+                privSec6Text: "If you have any questions or concerns about our privacy policy or application, feel free to contact us directly.",
+                // Terms Panel
+                termsSec1Title: "1. Acceptance of Terms",
+                termsSec1Text: "By downloading, installing, or using KindOf VideoSuite, you agree to be bound by these Terms of Use. If you do not agree to any of these terms, you must not use the application.",
+                termsSec2Title: "2. License & Usage Rights",
+                termsSec2Text: "The application offers you a personal, non-transferable, and non-exclusive license for your commercial or non-commercial video editing and processing activities. Copying, modifying, reverse engineering, or distributing the source code of the application is strictly prohibited.",
+                termsSec3Title: "3. User Responsibilities & Local Processing",
+                termsSec3Text: "KindOf VideoSuite is a utility tool that processes video files entirely on your local device. Accordingly:",
+                termsSec3Bullet1: "You are solely responsible for all video, audio, and data contents you import and process in the application.",
+                termsSec3Bullet2: "You agree not to use the application in violation of applicable laws or in a way that infringes upon third-party copyrights.",
+                termsSec3Bullet3: "Ensuring the hardware requirements (CPU, GPU, free disk space, etc.) for running the application is the user's responsibility.",
+                termsSec4Title: "4. Limitation of Liability",
+                termsSec4Text: "KindOf VideoSuite is provided on an \"As-Is\" basis. We do not guarantee that the software will be uninterrupted, error-free, or perfect. The developer cannot be held liable for any direct, indirect, or incidental damages (data loss, hardware failure, etc.) resulting from the use or inability to use the application.",
+                termsSec5Title: "5. Third-Party Software",
+                termsSec5Text: "The application may bundle external libraries and sidecar modules like ffmpeg and gyroflow. Use of these third-party components is subject to their respective open-source license agreements.",
+                termsSec6Title: "6. Modifications to Terms",
+                termsSec6Text: "The developer reserves the right to update these Terms of Use at any time. Modifications become effective immediately upon being posted on this page.",
+                termsSec7Title: "7. Contact",
+                termsSec7Text: "For any questions or feedback regarding the usage terms, you can contact us:",
+                // Support Panel
+                suppTitle: "How Can We Help?",
+                suppText: "Please feel free to contact us with any issues, feedback, or feature requests you encounter while using the KindOf VideoSuite application.",
+                suppLocalInfo: "Since the application runs entirely locally on your device, most issues you experience might be related to your computer's hardware configuration or library permissions. You can find quick solutions in the Frequently Asked Questions (FAQ) section below.",
+                btnEmail: "Contact via Email",
+                btnGithub: "Visit GitHub Profile",
+                faqTitle: "Frequently Asked Questions (FAQ)",
+                faqQ1: "Why does the application slow down or freeze while processing videos?",
+                faqA1: "Video stabilization, conversion, and encoding processes require high CPU and GPU power. You can significantly improve performance by closing other resource-intensive applications running in the background. Also, make sure your computer is plugged in and set to high-performance mode.",
+                faqQ2: "Where are the output video files saved?",
+                faqA2: "All exported videos are saved locally to the target directory you select on the save/render screen. Your files are not sent or stored on any cloud servers. If you cannot find the output file, check the path you selected during rendering.",
+                faqQ3: "I am getting a video stabilization (gyro) or render error?",
+                faqA3: "Make sure your video file is in one of the standard formats supported by the application (e.g. MP4, MOV). For stabilization, ensure the required gyro sensor data was recorded by your camera and is either embedded in or externally available for the video file.",
+                faqQ4: "What should I do if I get a \"Developer cannot be verified\" warning on macOS?",
+                faqA4: "If you downloaded the KindOf VideoSuite application directly from the App Store, you will not receive this warning. However, Apple Gatekeeper protection might be triggered for independent installations. In this case, go to System Settings > Privacy & Security, scroll to the bottom, and click the \"Open Anyway\" button."
+            },
+            tr: {
+                pageTitle: "Yasal Sözleşmeler ve Destek - KindOf VideoSuite",
+                subtitleDefault: "Yasal Bilgilendirme ve Destek",
+                tabPrivacy: "Gizlilik Politikası",
+                tabTerms: "Kullanım Koşulları",
+                tabSupport: "Destek ve SSS",
+                emailLabel: "E-posta",
+                lastUpdate: "Son Güncelleme: 4 Haziran 2026",
+                // Privacy Panel
+                privSec1Title: "1. Giriş ve Taahhüt",
+                privSec1Text: "KindOf VideoSuite (\"Uygulama\") olarak gizliliğinize son derece önem veriyoruz. Bu gizlilik politikası, uygulamamızı kullanırken hangi verilerin nasıl işlendiğini (veya işlenmediğini) açıklamak amacıyla hazırlanmıştır. Uygulamamızı kullanarak bu politikada belirtilen esasları kabul etmiş sayılarsınız.",
+                privSec2Title: "2. Veri Toplama ve İşleme",
+                privSec2Highlight: "KindOf VideoSuite, tamamen çevrimdışı (offline) çalışan bir masaüstü uygulamasıdır. Video işleme, stabilizasyon ve düzenleme işlemlerinin tamamı doğrudan kendi bilgisayarınızda (lokal olarak) gerçekleştirilir.",
+                privSec2Intro: "Bu bağlamda uygulamamız:",
+                privSec2Bullet1: "Hiçbir kişisel bilginizi (isim, e-posta, konum vb.) istemez veya toplamaz.",
+                privSec2Bullet2: "İşlediğiniz video dosyalarını, ses dosyalarını veya diğer medya içeriklerini hiçbir uzak sunucuya yüklemez, aktarmaz ve paylaşmaz.",
+                privSec2Bullet3: "Uygulama içinde yaptığınız ayarlar ve tercihler yalnızca yerel cihazınızda saklanır.",
+                privSec3Title: "3. Üçüncü Taraf Araçlar ve Kütüphaneler",
+                privSec3Text: "Uygulamamız, video işleme süreçlerinde ffmpeg, gyroflow gibi açık kaynaklı ve güvenilir alt kütüphaneleri kullanmaktadır. Bu araçlar da tamamen yerel olarak çalışmakta olup, internet üzerinden herhangi bir veri aktarımı gerçekleştirmemektedir.",
+                privSec4Title: "4. Bilgi Güvenliği",
+                privSec4Text: "Uygulama verilerinizi uzak bir sunucuda tutmadığı için, verilerinizin güvenliği tamamen sizin kendi cihazınızın güvenliğine bağlıdır. Bilgisayarınızda yetkisiz erişimi engellemek için gerekli güvenlik önlemlerini almanızı öneririz.",
+                privSec5Title: "5. Değişiklikler",
+                privSec5Text: "Bu gizlilik politikası, uygulamaya yeni özellikler eklendikçe veya yasal gereksinimler değiştikçe güncellenebilir. Güncellemeleri bu sayfa üzerinden takip edebilirsiniz.",
+                privSec6Title: "6. İletişim",
+                privSec6Text: "Gizlilik politikamız veya uygulamamız hakkında sorularınız varsa, bizimle doğrudan iletişime geçebilirsiniz.",
+                // Terms Panel
+                termsSec1Title: "1. Koşulların Kabulü",
+                termsSec1Text: "KindOf VideoSuite uygulamasını indirerek, kurarak veya kullanarak, bu Kullanım Koşulları'na bağlı kalmayı kabul etmiş olursunuz. Eğer bu koşullardan herhangi birini kabul etmiyorsanız, uygulamayı kullanmamanız gerekir.",
+                termsSec2Title: "2. Lisans ve Kullanım Hakları",
+                termsSec2Text: "Uygulama, size ticari olmayan veya ticari video düzenleme ve işleme faaliyetleriniz için kişisel, devredilemez ve münhasır olmayan bir kullanım lisansı sunar. Uygulamanın kaynak kodlarını kopyalamanız, değiştirmeniz, tersine mühendislik işlemlerine tabi tutmanız veya dağıtmanız yasaktır.",
+                termsSec3Title: "3. Kullanıcı Sorumlulukları ve Yerel İşleme",
+                termsSec3Text: "KindOf VideoSuite, video dosyalarını tamamen yerel cihazınızda işleyen bir yardımcı araçtır. Bu doğrultuda:",
+                termsSec3Bullet1: "Uygulamaya aktardığınız ve işlediğiniz tüm video, ses ve veri içeriklerinin yasal sorumluluğu tamamen size aittir.",
+                termsSec3Bullet2: "Uygulamayı yürürlükteki yasalara aykırı veya üçüncü şahısların telif haklarını ihlal edecek şekilde kullanmamayı taahhüt edersiniz.",
+                termsSec3Bullet3: "Uygulamanın çalışması için gerekli donanım gereksinimlerini (işlemci gücü, GPU, boş disk alanı vb.) sağlamak kullanıcının sorumluluğundadır.",
+                termsSec4Title: "4. Sorumluluk Sınırlandırması",
+                termsSec4Text: "KindOf VideoSuite, \"Olduğu Gibi\" (As-Is) esasıyla sunulmaktadır. Yazılımın kesintisiz, hatasız veya mükemmel çalışacağını garanti etmiyoruz. Uygulamanın kullanımından veya kullanılamamasından kaynaklanan doğrudan, dolaylı veya tesadüfi zararlardan (veri kaybı, donanım arızası vb.) geliştirici sorumlu tutulamaz.",
+                termsSec5Title: "5. Üçüncü Taraf Yazılımlar",
+                termsSec5Text: "Uygulama, ffmpeg ve gyroflow gibi harici kütüphaneleri ve sidecar modüllerini barındırabilir. Bu üçüncü taraf bileşenlerin kullanımı, kendi ilgili açık kaynak lisans sözleşmelerine tabidir.",
+                termsSec6Title: "6. Koşullarda Değişiklik",
+                termsSec6Text: "Uygulama geliştiricisi, bu Kullanım Koşulları'nı dilediği zaman güncelleme hakkını saklı tutar. Güncellemeler bu sayfada yayınlandığı andan itibaren geçerlilik kazanır.",
+                termsSec7Title: "7. İletişim",
+                termsSec7Text: "Kullanım koşullarıyla ilgili her türlü soru veya geri bildiriminiz için bizimle iletişime geçebilirsiniz:",
+                // Support Panel
+                suppTitle: "Nasıl Yardımcı Olabiliriz?",
+                suppText: "KindOf VideoSuite uygulamasını kullanırken karşılaştığınız sorunlar, geri bildirimleriniz veya yeni özellik istekleriniz için bizimle iletişime geçmekten çekinmeyin.",
+                suppLocalInfo: "Uygulama tamamen yerel cihazınızda çalıştığından, yaşadığınız sorunların büyük bir kısmı bilgisayarınızın donanım yapılandırması veya kütüphane izinleriyle ilgili olabilir. Aşağıdaki Sıkça Sorulan Sorular (SSS) bölümünde hızlı çözümlere ulaşabilirsiniz.",
+                btnEmail: "E-posta ile İletişime Geç",
+                btnGithub: "GitHub Profilini Ziyaret Et",
+                faqTitle: "Sıkça Sorulan Sorular (SSS)",
+                faqQ1: "Uygulama videoları işlerken neden yavaş veya donuyor?",
+                faqA1: "Video stabilizasyonu, dönüştürme ve kodlama işlemleri yüksek işlemci (CPU) ve grafik kartı (GPU) gücü gerektirir. İşlem sırasında arka planda çalışan diğer yüksek kaynak tüketen uygulamaları kapatarak performansı önemli ölçüde artırabilirsiniz. Ayrıca bilgisayarınızın şarja takılı ve yüksek performans modunda olduğundan emin olun.",
+                faqQ2: "Video çıktıları nereye kaydediliyor?",
+                faqA2: "Dışa aktardığınız tüm videolar, kaydetme/render ekranında seçtiğiniz hedef klasöre yerel olarak kaydedilir. Dosyalarınız hiçbir bulut sunucusuna gönderilmez veya saklanmaz. Çıktı dosyasını bulamıyorsanız, kaydetme esnasında seçtiğiniz klasör yolunu kontrol edin.",
+                faqQ3: "Video stabilizasyonu (gyro) veya render hatası alıyorum?",
+                faqA3: "Video dosyanızın uygulamanın desteklediği standart formatlarda (örneğin MP4, MOV) olduğundan emin olun. Stabilizasyon için gerekli olan gyro verilerinin kameranız tarafından kaydedildiğinden ve video dosyasının içinde gömülü veya harici olarak mevcut olduğundan emin olun.",
+                faqQ4: "macOS üzerinde \"Geliştirici doğrulanamadı\" uyarısı alırsam ne yapmalıyım?",
+                faqA4: "KindOf VideoSuite uygulamasını doğrudan App Store üzerinden indirdiyseniz bu uyarıyı almazsınız. Ancak bağımsız kurulumlarda Apple Gatekeeper koruması tetiklenebilir. Bu durumda Sistem Ayarları > Gizlilik ve Güvenlik menüsüne giderek alt kısımda yer alan \"Yine de Aç\" butonuna tıklayarak uygulamaya izin verebilirsiniz."
+            },
+            fr: {
+                pageTitle: "Accords Légaux & Support - KindOf VideoSuite",
+                subtitleDefault: "Accords Légaux, CLUF & Support",
+                tabPrivacy: "Politique de Confidentialité",
+                tabTerms: "Conditions d'Utilisation",
+                tabSupport: "Support & FAQ",
+                emailLabel: "E-mail",
+                lastUpdate: "Dernière mise à jour: 4 juin 2026",
+                // Privacy Panel
+                privSec1Title: "1. Introduction et Engagement",
+                privSec1Text: "Chez KindOf VideoSuite (\"l'Application\"), nous accordons une grande importance à votre vie privée. Cette politique de confidentialité explique comment vos données sont traitées (ou non traitées) lors de l'utilisation de notre application. En utilisant notre application, vous acceptez les termes décrits dans cette politique.",
+                privSec2Title: "2. Collecte et Traitement des Données",
+                privSec2Highlight: "KindOf VideoSuite est une application de bureau fonctionnant entièrement hors ligne (offline). Toutes les opérations de traitement de vidéo, de stabilisation et de montage sont effectuées localement sur votre ordinateur.",
+                privSec2Intro: "Dans ce contexte, notre application :",
+                privSec2Bullet1: "Ne demande et ne collecte aucune information personnelle (nom, e-mail, localisation, etc.).",
+                privSec2Bullet2: "Ne télécharge, ne transmet et ne partage vos fichiers vidéo, audio ou autres contenus médias avec aucun serveur distant.",
+                privSec2Bullet3: "Conserve tous vos réglages et préférences localement sur votre appareil.",
+                privSec3Title: "3. Outils et Bibliothèques Tiers",
+                privSec3Text: "Notre application utilise des bibliothèques open-source réputées telles que ffmpeg et gyroflow pour le traitement vidéo. Ces outils fonctionnent entièrement localement et ne transmettent aucune donnée via Internet.",
+                privSec4Title: "4. Sécurité des Informations",
+                privSec4Text: "Puisque l'application ne stocke pas vos données sur un serveur distant, leur sécurité dépend uniquement de celle de votre propre appareil. Nous vous conseillons de prendre les mesures de sécurité nécessaires pour empêcher tout accès non autorisé à votre ordinateur.",
+                privSec5Title: "5. Modifications",
+                privSec5Text: "Cette politique de confidentialité peut être mise à jour à mesure que de nouvelles fonctionnalités sont ajoutées ou que les exigences légales changent. Vous pouvez suivre les mises à jour sur cette page.",
+                privSec6Title: "6. Contact",
+                privSec6Text: "Si vous avez des questions ou des préoccupations concernant notre politique de confidentialité ou l'application, n'hésitez pas à nous contacter directement.",
+                // Terms Panel
+                termsSec1Title: "1. Acceptation des Conditions",
+                termsSec1Text: "En téléchargeant, installant ou utilisant KindOf VideoSuite, vous acceptez d'être lié par ces Conditions d'Utilisation. Si vous n'acceptez pas l'une de ces conditions, vous ne devez pas utiliser l'application.",
+                termsSec2Title: "2. Licence et Droits d'Utilisation",
+                termsSec2Text: "L'application vous offre une licence d'utilisation personnelle, non transférable et non exclusive pour vos activités de montage et de traitement vidéo commerciales ou non commerciales. Il est strictement interdit de copier, modifier, rétro-concevoir ou distribuer le code source de l'application.",
+                termsSec3Title: "3. Responsabilités de l'Utilisateur et Traitement Local",
+                termsSec3Text: "KindOf VideoSuite est un outil utilitaire qui traite les fichiers vidéo entièrement sur votre appareil local. En conséquence :",
+                termsSec3Bullet1: "Vous êtes seul responsable de tous les contenus vidéo, audio et de données que vous importez et traitez dans l'application.",
+                termsSec3Bullet2: "Vous vous engagez à ne pas utiliser l'application en violation des lois applicables ou de manière à enfreindre les droits d'auteur de tiers.",
+                termsSec3Bullet3: "Assurer la configuration matérielle requise (puissance CPU, GPU, espace disque disponible, etc.) pour faire fonctionner l'application est de la responsabilité de l'utilisateur.",
+                termsSec4Title: "4. Limitation de Responsabilité",
+                termsSec4Text: "KindOf VideoSuite est fourni \"en l'état\" (As-Is). Nous ne garantissons pas que le logiciel fonctionnera de manière ininterrompue, sans erreur ou parfaite. Le développeur ne peut être tenu responsable des dommages directs, indirects ou accessoires (perte de données, panne matérielle, etc.) résultant de l'utilisation ou de l'impossibilité d'utiliser l'application.",
+                termsSec5Title: "5. Logiciels Tiers",
+                termsSec5Text: "L'application peut intégrer des bibliothèques externes et des modules sidecar comme ffmpeg et gyroflow. L'utilisation de ces composants tiers est soumise à leurs contrats de licence open-source respectifs.",
+                termsSec6Title: "6. Modifications des Conditions",
+                termsSec6Text: "Le développeur se réserve le droit de mettre à jour ces Conditions d'Utilisation à tout moment. Les modifications entrent en vigueur dès leur publication sur cette page.",
+                termsSec7Title: "7. Contact",
+                termsSec7Text: "Pour toute question ou commentaire concernant les conditions d'utilisation, vous pouvez nous contacter :",
+                // Support Panel
+                suppTitle: "Comment Pouvons-nous Aider ?",
+                suppText: "N'hésitez pas à nous contacter pour tout problème, retour ou demande de fonctionnalité que vous rencontrez en utilisant l'application KindOf VideoSuite.",
+                suppLocalInfo: "Puisque l'application fonctionne entièrement localement sur votre appareil, la plupart des problèmes rencontrés peuvent être liés à la configuration matérielle de votre ordinateur ou aux autorisations des bibliothèques. Vous trouverez des solutions rapides dans la section Questions Fréquentes (FAQ) ci-dessous.",
+                btnEmail: "Contacter par E-mail",
+                btnGithub: "Visiter le profil GitHub",
+                faqTitle: "Questions Fréquentes (FAQ)",
+                faqQ1: "Pourquoi l'application ralentit-elle ou se bloque-t-elle lors du traitement des vidéos ?",
+                faqA1: "Les processus de stabilisation vidéo, de conversion et d'encodage nécessitent une puissance CPU et GPU élevée. Vous pouvez améliorer considérablement les performances en fermant les autres applications gourmandes en ressources qui s'exécutent en arrière-plan. Assurez-vous également que votre ordinateur est branché et réglé sur le mode haute performance.",
+                faqQ2: "Où les fichiers vidéo de sortie sont-ils enregistrés ?",
+                faqA2: "Toutes les vidéos exportées sont enregistrées localement dans le dossier cible que vous sélectionnez sur l'écran d'enregistrement/rendu. Vos fichiers ne sont ni envoyés ni stockés sur des serveurs cloud. Si vous ne trouvez pas le fichier de sortie, vérifiez le chemin que vous avez sélectionné lors du rendu.",
+                faqQ3: "J'obtiens une erreur de stabilisation vidéo (gyro) ou de rendu ?",
+                faqA3: "Assurez-vous que votre fichier vidéo est dans l'un des formats standard pris en charge par l'application (par exemple MP4, MOV). Pour la stabilisation, assurez-vous que les données du capteur gyroscope requises ont été enregistrées par votre caméra et sont intégrées ou disponibles en externe pour le fichier vidéo.",
+                faqQ4: "Que dois-je faire si je reçois un avertissement \"Développeur non vérifié\" sur macOS ?",
+                faqA4: "Si vous avez téléchargé l'application KindOf VideoSuite directement depuis l'App Store, vous ne recevrez pas cet avertissement. Cependant, la protection Apple Gatekeeper peut être déclenchée pour des installations indépendantes. Dans ce cas, accédez à Réglages Système > Confidentialité et sécurité, faites défiler vers le bas et cliquez sur le bouton \"Ouvrir quand même\"."
+            },
+            it: {
+                pageTitle: "Accordi Legali & Supporto - KindOf VideoSuite",
+                subtitleDefault: "Accordi Legali, EULA & Supporto",
+                tabPrivacy: "Informativa sulla Privacy",
+                tabTerms: "Termini di Utilizzo",
+                tabSupport: "Supporto & FAQ",
+                emailLabel: "E-mail",
+                lastUpdate: "Ultimo aggiornamento: 4 giugno 2026",
+                // Privacy Panel
+                privSec1Title: "1. Introduzione e Impegno",
+                privSec1Text: "Presso KindOf VideoSuite (\"l'Applicazione\"), diamo grande valore alla tua privacy. Questa informativa sulla privacy spiega come i tuoi dati vengono elaborati (o non elaborati) durante l'uso della nostra applicazione. Utilizzando la nostra applicazione, accetti i termini descritti in questa informativa.",
+                privSec2Title: "2. Raccolta ed Elaborazione dei Dati",
+                privSec2Highlight: "KindOf VideoSuite è un'applicazione desktop che funziona interamente offline. Tutte le operazioni di elaborazione video, stabilizzazione e modifica vengono eseguite direttamente sul tuo computer (localmente).",
+                privSec2Intro: "In questo contesto, la nostra applicazione:",
+                privSec2Bullet1: "Non richiede né raccoglie alcuna informazione personale (nome, e-mail, posizione, ecc.).",
+                privSec2Bullet2: "Non carica, trasmette o condivide i tuoi file video, file audio o altri contenuti multimediali elaborati con server remoti.",
+                privSec2Bullet3: "Conserva tutte le tue impostazioni e preferenze localmente sul tuo dispositivo.",
+                privSec3Title: "3. Strumenti e Librerie di Terze Parti",
+                privSec3Text: "La nostra applicazione utilizza librerie open source affidabili come ffmpeg e gyroflow per l'elaborazione video. Questi strumenti funzionano interamente in locale e non trasmettono dati via Internet.",
+                privSec4Title: "4. Sicurezza delle Informazioni",
+                privSec4Text: "Poiché l'applicazione non memorizza i tuoi dati su un server remoto, la sicurezza dipende interamente da quella del tuo dispositivo. Ti consigliamo di adottare le precauzioni necessarie per impedire l'accesso non autorizzato al tuo computer.",
+                privSec5Title: "5. Modifiche",
+                privSec5Text: "Questa informativa sulla privacy può essere aggiornata man mano che vengono aggiunte nuove funzionalità o cambiano i requisiti legali. Puoi seguire gli aggiornamenti su questa pagina.",
+                privSec6Title: "6. Contatti",
+                privSec6Text: "Se hai domande o dubbi sulla nostra informativa sulla privacy o sull'applicazione, non esitare a contattarci direttamente.",
+                // Terms Panel
+                termsSec1Title: "1. Accettazione dei Termini",
+                termsSec1Text: "Scaricando, installando o utilizzando KindOf VideoSuite, accetti di essere vincolato da questi Termini di Utilizzo. Se non accetti uno qualsiasi di questi termini, non devi utilizzare l'applicazione.",
+                termsSec2Title: "2. Licenza e Diritti d'Uso",
+                termsSec2Text: "L'applicazione ti offre una licenza d'uso personale, non trasferibile e non esclusiva per le tue attività di editing e conversione video commerciali o non commerciali. È severamente vietato copiare, modificare, decompilare o distribuire il codice sorgente dell'applicazione.",
+                termsSec3Title: "3. Responsabilità dell'Utente ed Elaborazione Locale",
+                termsSec3Text: "KindOf VideoSuite è uno strumento di utilità che elabora i file video interamente sul tuo dispositivo locale. Di conseguenza:",
+                termsSec3Bullet1: "Sei l'unico responsabile di tutti i contenuti video, audio e dati que importi ed elabori nell'applicazione.",
+                termsSec3Bullet2: "Ti impegni a non utilizzare l'applicazione in violazione delle leggi vigenti o in modo da violare i diritti d'autore di terzi.",
+                termsSec3Bullet3: "Assicurare i requisiti hardware (potenza CPU, GPU, spazio su disco libero, ecc.) per l'esecuzione dell'applicazione è responsabilità dell'utente.",
+                termsSec4Title: "4. Limitazione di Responsabilità",
+                termsSec4Text: "KindOf VideoSuite viene fornito \"così com'è\" (As-Is). Non garantiamo che il software sarà ininterrotto, privo di errori o perfetto. Lo sviluppatore non può essere ritenuto responsabile per eventuali danni diretti, indiretti o incidentali (perdita di dati, guasto hardware, ecc.) derivanti dall'uso o dall'impossibilità di usare l'applicazione.",
+                termsSec5Title: "5. Software di Terze Parti",
+                termsSec5Text: "L'applicazione può includere librerie esterne e moduli sidecar come ffmpeg e gyroflow. L'uso di questi componenti di terze parti è soggetto ai rispettivi accordi di licenza open source.",
+                termsSec6Title: "6. Modifiche ai Termini",
+                termsSec6Text: "Lo sviluppatore si riserva il diritto di aggiornare questi Termini di Utilizzo in qualsiasi momento. Le modifiche diventano efficaci immediatamente dopo la pubblicazione su questa pagina.",
+                termsSec7Title: "7. Contatti",
+                termsSec7Text: "Per qualsiasi domanda o feedback in merito ai termini di utilizzo, puoi contattarci:",
+                // Support Panel
+                suppTitle: "Come Possiamo Aiutare?",
+                suppText: "Non esitare a contattarci per qualsiasi problema, feedback o richiesta di funzionalità riscontrati durante l'uso dell'applicazione KindOf VideoSuite.",
+                suppLocalInfo: "Poiché l'applicazione funziona interamente sul tuo dispositivo, la maggior parte dei problemi riscontrati potrebbe essere legata alla configurazione hardware del tuo computer o alle autorizzazioni delle librerie. Puoi trovare soluzioni rapide nella sezione Domande Frequenti (FAQ) qui sotto.",
+                btnEmail: "Contatta via E-mail",
+                btnGithub: "Visita il profilo GitHub",
+                faqTitle: "Domande Frequenti (FAQ)",
+                faqQ1: "Perché l'applicazione rallenta o si blocca durante l'elaborazione dei video?",
+                faqA1: "I processi di stabilizzazione, conversione e codifica video richiedono un'elevata potenza di CPU e GPU. Puoi migliorare significativamente le prestazioni chiudendo le altre applicazioni ad alto consumo di risorse in esecuzione in background. Inoltre, assicuratevi che il computer sia collegato alla corrente e impostato sulla modalità ad alte prestazioni.",
+                faqQ2: "Dove vengono salvati i file video di output?",
+                faqA2: "Tutti i video esportati vengono salvati localmente nella cartella di destinazione selezionata nella schermata di salvataggio/rendering. I tuoi file non vengono inviati né memorizzati su server cloud. Se non trovi il file di output, controlla il percorso selezionato durante il rendering.",
+                faqQ3: "Ottengo un errore di stabilizzazione video (gyro) o di rendering?",
+                faqA3: "Assicurati che il file video sia in uno dei formati standard supportati dall'applicazione (ad esempio MP4, MOV). Per la stabilizzazione, assicuratevi che i dati del sensore giroscopio richiesti siano stati registrati dalla fotocamera e siano incorporati o disponibili esternamente per il file video.",
+                faqQ4: "Cosa devo fare se ricevo un avviso \"Sviluppatore non verificato\" su macOS?",
+                faqA4: "Se hai scaricato l'applicazione KindOf VideoSuite direttamente dall'App Store, non riceverai questo avviso. Tuttavia, la protezione Gatekeeper di Apple potrebbe attivarsi per installazioni indipendenti. In questo caso, vai in Impostazioni di Sistema > Privacy e Sicurezza, scorri fino in fondo e fai clic sul pulsante \"Apri comunque\"."
+            }
+        };
+
         function toggleFaq(element) {
             const item = element.parentElement;
             item.classList.toggle('active');
@@ -529,7 +808,78 @@
             }
         }
 
+        // Default language based on navigator or localStorage
+        function getInitialLanguage() {
+            const saved = localStorage.getItem('kindof_legal_lang');
+            if (saved && TRANSLATIONS[saved]) return saved;
+
+            const userLang = navigator.language || navigator.userLanguage;
+            if (userLang) {
+                const prefix = userLang.toLowerCase().substring(0, 2);
+                if (TRANSLATIONS[prefix]) {
+                    return prefix;
+                }
+            }
+            return 'en'; // default fallback
+        }
+
+        let currentLang = getInitialLanguage();
+        let currentTab = 'privacy';
+
+        function translatePage() {
+            const langData = TRANSLATIONS[currentLang];
+            if (!langData) return;
+
+            // Page Title
+            document.title = langData.pageTitle;
+
+            // HTML Elements Translation
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (langData[key]) {
+                    el.innerHTML = langData[key];
+                }
+            });
+
+            // Subtitle Update based on current active tab
+            const subtitleEl = document.getElementById('page-subtitle');
+            if (subtitleEl) {
+                if (currentTab === 'privacy') {
+                    subtitleEl.textContent = langData.tabPrivacy;
+                } else if (currentTab === 'terms') {
+                    subtitleEl.textContent = langData.tabTerms;
+                } else if (currentTab === 'support') {
+                    subtitleEl.textContent = langData.tabSupport;
+                }
+            }
+
+            // Footer Update
+            const footerEl = document.getElementById('footer-text');
+            if (footerEl) {
+                footerEl.textContent = langData.lastUpdate;
+            }
+
+            // Update active language button style
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            const activeBtn = document.getElementById('lang-' + currentLang);
+            if (activeBtn) {
+                activeBtn.classList.add('active');
+            }
+        }
+
+        function changeLang(lang) {
+            if (TRANSLATIONS[lang]) {
+                currentLang = lang;
+                localStorage.setItem('kindof_legal_lang', lang);
+                translatePage();
+            }
+        }
+
         function showTab(tabId) {
+            currentTab = tabId;
+
             // Hide all tab panels
             document.querySelectorAll('.tab-panel').forEach(panel => {
                 panel.style.display = 'none';
@@ -551,15 +901,16 @@
                 btn.classList.add('active');
             }
 
-            // Update page subtitle
+            // Update Page Subtitle
+            const langData = TRANSLATIONS[currentLang];
             const subtitleEl = document.getElementById('page-subtitle');
-            if (subtitleEl) {
+            if (subtitleEl && langData) {
                 if (tabId === 'privacy') {
-                    subtitleEl.textContent = 'Gizlilik Politikası';
+                    subtitleEl.textContent = langData.tabPrivacy;
                 } else if (tabId === 'terms') {
-                    subtitleEl.textContent = 'Kullanım Koşulları (EULA)';
+                    subtitleEl.textContent = langData.tabTerms;
                 } else if (tabId === 'support') {
-                    subtitleEl.textContent = 'Destek ve Sıkça Sorulan Sorular';
+                    subtitleEl.textContent = langData.tabSupport;
                 }
             }
 
@@ -569,14 +920,16 @@
             }
         }
 
-        // Initialize based on URL hash
+        // Initialize based on URL hash & translations
         window.addEventListener('DOMContentLoaded', () => {
             const hash = window.location.hash.substring(1);
             if (['privacy', 'terms', 'support'].includes(hash)) {
-                showTab(hash);
+                currentTab = hash;
             } else {
-                showTab('privacy'); // default
+                currentTab = 'privacy'; // default
             }
+            translatePage();
+            showTab(currentTab);
         });
 
         // Also listen to hashchange to support navigation within the page
